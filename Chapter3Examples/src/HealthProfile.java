@@ -2,9 +2,9 @@
  * Created by Upoma on 1/19/2017.
  */
 public class HealthProfile {
-    private  String firstName;
+    private String firstName;
     private String lastName;
-    private  int dateOfBirth;
+    private int dateOfBirth;
     private int monthOfBirth;
     private int yearOfBirth;
     private String gender;
@@ -12,19 +12,21 @@ public class HealthProfile {
     private double weightInPound;
     public int currentAge;
     public int maxHR;
+    public double bmiVal;
+    public String str;
 
-    public HealthProfile(String firstN,String lastN,String gen,int dOB,int mOB,int yOB,double heightInInc,double weightInP)
-    {
-        firstName=firstN;
-        lastName=lastN;
-        gender=gen;
-        dateOfBirth=dOB;
-        monthOfBirth=mOB;
-        yearOfBirth=yOB;
-        heightInInches=heightInInc;
-        weightInPound=weightInP;
+    /*   public HealthProfile(String firstN,String lastN,String gen,int dOB,int mOB,int yOB,double heightInInc,double weightInP)
+       {
+           firstName=firstN;
+           lastName=lastN;
+           gender=gen;
+           dateOfBirth=dOB;
+           monthOfBirth=mOB;
+           yearOfBirth=yOB;
+           heightInInches=heightInInc;
+           weightInPound=weightInP;
 
-    }
+       }*/
     public void setFirstName(String firstN) {
         firstName = firstN;
     }
@@ -40,6 +42,7 @@ public class HealthProfile {
     public String getLastName() {
         return lastName;
     }
+
     public void setGender(String gen)
 
     {
@@ -90,27 +93,44 @@ public class HealthProfile {
         return weightInPound;
     }
 
-    public int ageCalculation()
-    {
-        currentAge =2017-yearOfBirth;
-        return  currentAge;
+    public int ageCalculation() {
+        currentAge = 2017 - yearOfBirth;
+        return currentAge;
     }
+
     public int maximumHeartRate() {
         maxHR = 220 - currentAge;
         return maxHR;
     }
-    public String targetHeartRate()
-    {
-        int targetHrMin= (int)(.50*maxHR);
-        int targetHrMax=(int)(.85*maxHR);
-        String targetHeartRate = "between "+targetHrMin+" and "+targetHrMax;
-        return  targetHeartRate;
+
+    public String targetHeartRate() {
+        int targetHrMin = (int) (.50 * maxHR);
+        int targetHrMax = (int) (.85 * maxHR);
+        String targetHeartRate = "between " + targetHrMin + " and " + targetHrMax;
+        return targetHeartRate;
     }
-    public double BMICalculation()
-    {
-        double bmiVal= (weightInPound*730)/(heightInInches*heightInInches);
+
+    public double BMICalculation() {
+        bmiVal = (weightInPound * 730) / (heightInInches * heightInInches);
         return bmiVal;
 
     }
 
+    public String BMIValue() {
+
+        if (bmiVal < 18.5) {
+             str = "BMI value indicates underweight range";
+
+        } else if (18.5 <= bmiVal && bmiVal <= 24.9) {
+             str = "BMI value indicates normal range";
+
+        } else if (25 <= bmiVal && bmiVal <= 29.9) {
+             str = "BMI value indicates overweight range";
+        } else if (bmiVal >=30){
+             str = "BMI value indicates Obese range";
+
+        }
+        return  str;
+    }
 }
+
